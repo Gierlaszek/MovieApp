@@ -4,9 +4,14 @@
  * and open the template in the editor.
  */
 package Window;
+import API.request_response;
+import java.io.IOException;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.*;
-import jdk.nashorn.api.tree.ParenthesizedTree;
+import org.json.JSONException;
 
 /**
  *
@@ -14,6 +19,7 @@ import jdk.nashorn.api.tree.ParenthesizedTree;
  */
 public class Search_win extends JFrame
 {
+
 
     /**
      * Creates new form Search_win
@@ -37,8 +43,9 @@ public class Search_win extends JFrame
         jLabel1 = new javax.swing.JLabel();
         Search = new javax.swing.JButton();
         Cancel = new javax.swing.JButton();
+        Error = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(450, 300, 0, 0));
 
         jLabel1.setText("Title");
@@ -64,15 +71,18 @@ public class Search_win extends JFrame
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addComponent(Title, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(Search)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Cancel)))
+                        .addComponent(Cancel))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Error, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(31, 31, 31)
+                                .addComponent(Title, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -82,11 +92,13 @@ public class Search_win extends JFrame
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Title, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addGap(18, 18, 18)
+                .addGap(1, 1, 1)
+                .addComponent(Error, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Search)
                     .addComponent(Cancel))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
@@ -98,17 +110,36 @@ public class Search_win extends JFrame
     }//GEN-LAST:event_CancelActionPerformed
 
     private void SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchActionPerformed
-       this.dispose();
-       new More_info_win(this).setVisible(true);
+       title_movie = Title.getText();
+       request_response r_r = new request_response();
+       //create blok try - catch to caught all errors
+        try 
+        {
+            r_r.response();
+            map_JSON = r_r.getMap();
+            this.dispose();
+            new More_info_win(this).setVisible(true);
+        } 
+        catch (IOException | JSONException ex)
+        {
+            Error.setText("Error!! Movie not found! ");
+        } 
+        
     }//GEN-LAST:event_SearchActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    //create getter
+     public static String getTitle_movie()
+    {
+        return title_movie;
+    }
+   
 
-    
+    //variable which will be used to send to other package
+    static Map<String, String> map_JSON;
+    public static String title_movie;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cancel;
+    private javax.swing.JLabel Error;
     private javax.swing.JButton Search;
     private javax.swing.JTextField Title;
     private javax.swing.JLabel jLabel1;

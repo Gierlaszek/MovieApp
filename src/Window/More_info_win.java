@@ -5,22 +5,28 @@
  */
 package Window;
 import javax.swing.JFrame;
-
+import java.lang.NullPointerException;
 /**
  *
  * @author kamil
  */
-public class More_info_win extends JFrame
-{
+public class More_info_win extends JFrame {
 
     /**
      * Creates new form More_info_win
      */
-    public More_info_win(JFrame parent) 
+    public More_info_win(JFrame parent)
     {
         frameParent = parent;
         initComponents();
         parent.dispose();
+        
+        title.setText(Search_win.map_JSON.get("Title"));
+        year.setText(Search_win.map_JSON.get("Year"));
+        genre.setText(Search_win.map_JSON.get("Genre"));
+        runTime.setText(Search_win.map_JSON.get("RunTime"));
+        director.setText(Search_win.map_JSON.get("Director"));
+        country.setText(Search_win.map_JSON.get("Country"));
     }
 
     /**
@@ -32,21 +38,35 @@ public class More_info_win extends JFrame
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton2 = new javax.swing.JButton();
+        Delete = new javax.swing.JButton();
         Cancel = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        Save = new javax.swing.JButton();
+        Edit = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        slider_rate = new javax.swing.JSlider(javax.swing.JSlider.HORIZONTAL, 0, 10, 5);
+        Rate = new javax.swing.JSlider(javax.swing.JSlider.HORIZONTAL, 0, 10, 5);
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        title = new javax.swing.JTextField();
+        year = new javax.swing.JTextField();
+        genre = new javax.swing.JTextField();
+        runTime = new javax.swing.JTextField();
+        director = new javax.swing.JTextField();
+        country = new javax.swing.JTextField();
+        rate = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setAutoRequestFocus(false);
         setBounds(new java.awt.Rectangle(450, 300, 0, 0));
 
-        jButton2.setText("Delete");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        Delete.setText("Delete");
+        Delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                DeleteActionPerformed(evt);
             }
         });
 
@@ -57,19 +77,65 @@ public class More_info_win extends JFrame
             }
         });
 
-        jButton3.setText("Save");
+        Save.setText("Save");
 
-        jCheckBox1.setText("Edit");
+        Edit.setText("Edit");
+        Edit.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                EditStateChanged(evt);
+            }
+        });
 
-        jLabel1.setText("Title");
+        jLabel1.setText("Title:");
 
-        jLabel2.setText("Year");
+        jLabel2.setText("Year:");
 
-        slider_rate.setMajorTickSpacing(5);
-        slider_rate.setMinorTickSpacing(1);
-        slider_rate.setPaintTicks(true);
-        slider_rate.setPaintLabels(true);
-        slider_rate.setSnapToTicks(true);
+        Rate.setMajorTickSpacing(5);
+        Rate.setMinorTickSpacing(1);
+        Rate.setPaintTicks(true);
+        Rate.setPaintLabels(true);
+        Rate.setSnapToTicks(true);
+        Rate.setOrientation(javax.swing.JSlider.VERTICAL);
+        Rate.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                RateStateChanged(evt);
+            }
+        });
+
+        jLabel3.setText("Genre:");
+
+        jLabel4.setText("RunTime:");
+
+        jLabel5.setText("Director:");
+
+        jLabel6.setText("Country:");
+
+        jLabel7.setText("Rate:");
+
+        title.setEditable(false);
+
+        year.setEditable(false);
+
+        genre.setEditable(false);
+
+        runTime.setEditable(false);
+
+        director.setEditable(false);
+
+        country.setEditable(false);
+
+        rate.setText("5");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -79,73 +145,189 @@ public class More_info_win extends JFrame
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addComponent(jCheckBox1))
+                        .addComponent(Edit)
                         .addGap(34, 34, 34)
                         .addComponent(Cancel)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3)
-                        .addContainerGap(252, Short.MAX_VALUE))
+                        .addComponent(Delete)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Save)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(slider_rate, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(19, 19, 19)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(155, 155, 155)
+                                .addComponent(rate, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                                .addGap(87, 87, 87))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(1, 1, 1)))
+                                .addGap(122, 122, 122))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(199, 199, 199))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                .addGap(1, 1, 1)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                        .addGap(183, 183, 183))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(179, 179, 179))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(88, 88, 88)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(director)
+                                            .addComponent(country)
+                                            .addComponent(runTime)
+                                            .addComponent(genre)
+                                            .addComponent(year)
+                                            .addComponent(title))))))
+                        .addGap(58, 58, 58)
+                        .addComponent(Rate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32))))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 425, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(slider_rate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 198, Short.MAX_VALUE)
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(year, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(genre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(runTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(director, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(country, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rate, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)))
+                    .addComponent(Rate, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
+                    .addComponent(Delete)
                     .addComponent(Cancel)
-                    .addComponent(jButton3)
-                    .addComponent(jCheckBox1))
-                .addContainerGap())
+                    .addComponent(Edit)
+                    .addComponent(Save)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(305, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    //delete all data from database and clean TextField
+    private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
+        title.setText("");
+        year.setText("");
+        runTime.setText("");
+        genre.setText("");
+        director.setText("");
+        country.setText("");
+        rate.setText("0");
+        //TODO delete position in database
+        
+    }//GEN-LAST:event_DeleteActionPerformed
 
+    //close this and open next window
     private void CancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelActionPerformed
         this.dispose();
-        if(frameParent.getClass() == new Library_win(new Menu_win()).getClass())
-        {
+        if (frameParent.getClass() == new Library_win(new Menu_win()).getClass()) {
             new Library_win(new Menu_win()).setVisible(true);
-        }
-        else if(frameParent.getClass() == new Search_win(new Menu_win()).getClass())
-        {
+        } else if (frameParent.getClass() == new Search_win(new Menu_win()).getClass()) {
             new Search_win(new Menu_win()).setVisible(true);
         }
-        
+
     }//GEN-LAST:event_CancelActionPerformed
+
+    //create rating option
+    private void RateStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_RateStateChanged
+        rate.setText("" + ((javax.swing.JSlider) evt.getSource()).getValue());
+    }//GEN-LAST:event_RateStateChanged
+
+    //make permission to edit data 
+    private void EditStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_EditStateChanged
+        if(Edit.isSelected())
+        {
+            title.setEditable(true);
+            year.setEditable(true);
+            runTime.setEditable(true);
+            genre.setEditable(true);
+            director.setEditable(true);
+            country.setEditable(true);
+        }
+        else
+        {
+            title.setEditable(false);
+            year.setEditable(false);
+            runTime.setEditable(false);
+            genre.setEditable(false);
+            director.setEditable(false);
+            country.setEditable(false);
+        }
+    }//GEN-LAST:event_EditStateChanged
 
     /**
      * @param args the command line arguments
      */
-
-
+    
     private Object frameParent = null;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cancel;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JButton Delete;
+    private javax.swing.JCheckBox Edit;
+    private javax.swing.JSlider Rate;
+    private javax.swing.JButton Save;
+    private javax.swing.JTextField country;
+    private javax.swing.JTextField director;
+    private javax.swing.JTextField genre;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JSlider slider_rate;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel rate;
+    private javax.swing.JTextField runTime;
+    private javax.swing.JTextField title;
+    private javax.swing.JTextField year;
     // End of variables declaration//GEN-END:variables
 }
