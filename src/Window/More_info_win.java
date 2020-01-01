@@ -4,8 +4,18 @@
  * and open the template in the editor.
  */
 package Window;
+
+import DateBase.JDBC;
+import DateBase.inCorrect;
+import java.awt.Component;
 import javax.swing.JFrame;
 import java.lang.NullPointerException;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 /**
  *
  * @author kamil
@@ -21,12 +31,17 @@ public class More_info_win extends JFrame {
         initComponents();
         parent.dispose();
         
-        title.setText(Search_win.map_JSON.get("Title"));
-        year.setText(Search_win.map_JSON.get("Year"));
-        genre.setText(Search_win.map_JSON.get("Genre"));
-        runTime.setText(Search_win.map_JSON.get("RunTime"));
-        director.setText(Search_win.map_JSON.get("Director"));
-        country.setText(Search_win.map_JSON.get("Country"));
+        //when previous frame is Search_win belongs read map_JSON from this frame and setText to textField
+        if(frameParent.getClass().equals(new Search_win(new Menu_win()).getClass()))
+        {
+            map_JSON = Search_win.map_JSON;
+            title.setText(map_JSON.get("Title"));
+            year.setText(map_JSON.get("Year"));
+            genre.setText(map_JSON.get("Genre"));
+            runTime.setText(map_JSON.get("RunTime"));
+            director.setText(map_JSON.get("Director"));
+            country.setText(map_JSON.get("Country"));
+        }
     }
 
     /**
@@ -78,6 +93,11 @@ public class More_info_win extends JFrame {
         });
 
         Save.setText("Save");
+        Save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveActionPerformed(evt);
+            }
+        });
 
         Edit.setText("Edit");
         Edit.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -303,10 +323,64 @@ public class More_info_win extends JFrame {
         }
     }//GEN-LAST:event_EditStateChanged
 
+    //create action when press button SAVE
+    //Exist two option
+    //1. when previous frame is Search_win
+    //2. when previous frame is Library_win
+    //when option 2 , create map_JSON to send to class JDBC
+    private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
+        
+        //parametrs to check 
+        if(!Edit.isSelected() && !title.getText().isEmpty() && !year.getText().isEmpty() && !runTime.getText().isEmpty() && !genre.getText().isEmpty() 
+                && !director.getText().isEmpty() && !country.getText().isEmpty() )
+        {
+            if(frameParent.getClass().equals(new Library_win(new Menu_win()).getClass()))
+            {
+                map_JSON.put("Title", title.getText());
+                map_JSON.put("Year", title.getText());
+                map_JSON.put("RunTime", title.getText());
+                map_JSON.put("Genre", title.getText());
+                map_JSON.put("Director", title.getText());
+                map_JSON.put("Country", title.getText());
+            }
+            
+            map_JSON.put("Rate", rate.getText());
+            try
+            {
+                JDBC jdbc = new JDBC(map_JSON, "save");
+                JOptionPane.showMessageDialog(null, "Success! Saved record!");
+                CancelActionPerformed(evt);
+                    
+            }
+            catch (SQLException ex)
+            {
+                JOptionPane.showMessageDialog(null, "Error! Doesn't connect with database !");
+            } 
+            catch (inCorrect ex)
+            {
+                JOptionPane.showMessageDialog(null, "Error! This movie already exists in database.");
+            }
+        }
+        //MessageDialog when which parametr isnt correct
+        else
+        {
+            if(Edit.isSelected())
+            {
+                JOptionPane.showMessageDialog(null, "Error! Edit cannot be selected!");
+            }
+            else if(title.getText().isEmpty() || year.getText().isEmpty() || runTime.getText().isEmpty() || genre.getText().isEmpty() 
+                || director.getText().isEmpty() || country.getText().isEmpty())
+            {
+                JOptionPane.showMessageDialog(null, "Error! The fields cannot be empty!");
+            }
+        }
+    }//GEN-LAST:event_SaveActionPerformed
+
     /**
      * @param args the command line arguments
      */
     
+    private Map<String, String> map_JSON = new HashMap<>();
     private Object frameParent = null;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cancel;
