@@ -109,6 +109,7 @@ public class Search_win extends JFrame
         new Menu_win().setVisible(true);
     }//GEN-LAST:event_CancelActionPerformed
 
+    //method to connect with site 
     private void SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchActionPerformed
        title_movie = Title.getText();
        request_response r_r = new request_response();
@@ -133,7 +134,6 @@ public class Search_win extends JFrame
         return title_movie;
     }
    
-
     //variable which will be used to send to other package
     static Map<String, String> map_JSON;
     public static String title_movie;

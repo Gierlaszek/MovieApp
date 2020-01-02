@@ -21,7 +21,7 @@ public class request_response
         return map_JSON;
     }
 
- //variable TItle from other package 
+ //variable Title from other package 
     String title = Search_win.getTitle_movie();
     public void response() throws JSONException, IOException
     {

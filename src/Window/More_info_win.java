@@ -8,6 +8,7 @@ package Window;
 import DateBase.JDBC;
 import DateBase.inCorrect;
 import java.awt.Component;
+import java.io.IOException;
 import javax.swing.JFrame;
 import java.lang.NullPointerException;
 import java.sql.SQLException;
@@ -16,6 +17,9 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+import org.xml.sax.SAXException;
 /**
  *
  * @author kamil
@@ -337,11 +341,11 @@ public class More_info_win extends JFrame {
             if(frameParent.getClass().equals(new Library_win(new Menu_win()).getClass()))
             {
                 map_JSON.put("Title", title.getText());
-                map_JSON.put("Year", title.getText());
-                map_JSON.put("RunTime", title.getText());
-                map_JSON.put("Genre", title.getText());
-                map_JSON.put("Director", title.getText());
-                map_JSON.put("Country", title.getText());
+                map_JSON.put("Year", year.getText());
+                map_JSON.put("RunTime", runTime.getText());
+                map_JSON.put("Genre", genre.getText());
+                map_JSON.put("Director", director.getText());
+                map_JSON.put("Country", country.getText());
             }
             
             map_JSON.put("Rate", rate.getText());
@@ -352,14 +356,14 @@ public class More_info_win extends JFrame {
                 CancelActionPerformed(evt);
                     
             }
-            catch (SQLException ex)
+            catch (SQLException | ParserConfigurationException | TransformerException | SAXException | IOException exc)
             {
                 JOptionPane.showMessageDialog(null, "Error! Doesn't connect with database !");
             } 
             catch (inCorrect ex)
             {
                 JOptionPane.showMessageDialog(null, "Error! This movie already exists in database.");
-            }
+            } 
         }
         //MessageDialog when which parametr isnt correct
         else
