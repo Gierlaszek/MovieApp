@@ -333,21 +333,18 @@ public class More_info_win extends JFrame {
     //2. when previous frame is Library_win
     //when option 2 , create map_JSON to send to class JDBC
     private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
-        
         //parametrs to check 
         if(!Edit.isSelected() && !title.getText().isEmpty() && !year.getText().isEmpty() && !runTime.getText().isEmpty() && !genre.getText().isEmpty() 
                 && !director.getText().isEmpty() && !country.getText().isEmpty() )
         {
-            if(frameParent.getClass().equals(new Library_win(new Menu_win()).getClass()))
-            {
-                map_JSON.put("Title", title.getText());
-                map_JSON.put("Year", year.getText());
-                map_JSON.put("RunTime", runTime.getText());
-                map_JSON.put("Genre", genre.getText());
-                map_JSON.put("Director", director.getText());
-                map_JSON.put("Country", country.getText());
-            }
             
+            map_JSON.clear();
+            map_JSON.put("Title", title.getText());
+            map_JSON.put("Year", year.getText());
+            map_JSON.put("RunTime", runTime.getText());
+            map_JSON.put("Genre", genre.getText());
+            map_JSON.put("Director", director.getText());
+            map_JSON.put("Country", country.getText());                
             map_JSON.put("Rate", rate.getText());
             try
             {

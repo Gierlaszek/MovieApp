@@ -31,7 +31,7 @@
     </Menu>
   </NonVisualComponents>
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="2"/>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="bounds" type="java.awt.Rectangle" editor="org.netbeans.beaninfo.editors.RectangleEditor">
       <Rectangle value="[450, 300, 0, 0]"/>
     </Property>
@@ -58,14 +58,14 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="Delete" min="-2" pref="109" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="180" max="-2" attributes="0"/>
-                      <Component id="Cancel" min="-2" pref="109" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="Cancel" min="-2" pref="109" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="Add" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="Edit" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane2" min="-2" pref="690" max="-2" attributes="0"/>
@@ -96,6 +96,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Delete"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DeleteActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="Cancel">
       <Properties>
@@ -132,12 +135,12 @@
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="8" rowCount="0">
-                <Column editable="true" title="Title " type="java.lang.Object"/>
-                <Column editable="true" title="Year" type="java.lang.Object"/>
-                <Column editable="true" title="RunTime" type="java.lang.Object"/>
-                <Column editable="true" title="Genre" type="java.lang.Object"/>
-                <Column editable="true" title="Director" type="java.lang.Object"/>
-                <Column editable="true" title="Country" type="java.lang.Object"/>
+                <Column editable="true" title="Title" type="java.lang.String"/>
+                <Column editable="true" title="Year" type="java.lang.String"/>
+                <Column editable="true" title="RunTime" type="java.lang.String"/>
+                <Column editable="true" title="Genre" type="java.lang.String"/>
+                <Column editable="true" title="Director" type="java.lang.String"/>
+                <Column editable="true" title="Country" type="java.lang.String"/>
                 <Column editable="true" title="Rate" type="java.lang.Integer"/>
                 <Column editable="true" title="Select" type="java.lang.Boolean"/>
               </Table>

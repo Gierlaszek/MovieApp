@@ -5,6 +5,9 @@
  */
 package Window;
 
+import DateBase.JDBC;
+import File.FileTypeFilter;
+import java.io.File;
 import javax.swing.*;
 
 /**
@@ -35,6 +38,10 @@ public class Menu_win extends JFrame
 
         Search = new javax.swing.JButton();
         Library = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        Export = new javax.swing.JMenuItem();
+        Import = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(450, 300, 0, 0));
@@ -52,6 +59,28 @@ public class Menu_win extends JFrame
                 LibraryActionPerformed(evt);
             }
         });
+
+        jMenu1.setText("File");
+
+        Export.setText("Export");
+        Export.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExportActionPerformed(evt);
+            }
+        });
+        jMenu1.add(Export);
+
+        Import.setText("Import");
+        Import.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ImportActionPerformed(evt);
+            }
+        });
+        jMenu1.add(Import);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -71,7 +100,7 @@ public class Menu_win extends JFrame
                 .addComponent(Search)
                 .addGap(18, 18, 18)
                 .addComponent(Library)
-                .addContainerGap(122, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
 
         pack();
@@ -86,6 +115,54 @@ public class Menu_win extends JFrame
         new Library_win(thisFrame).setVisible(true);
     }//GEN-LAST:event_LibraryActionPerformed
 
+    private void ExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportActionPerformed
+        try 
+        {
+            JFileChooser jfileChooser = new JFileChooser("/Users/kamil/Desktop/Programowanie/Java/MovieApp");
+            jfileChooser.setDialogTitle("Export Database to XML");
+            jfileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            jfileChooser.setSelectedFile(new File("Database_MovieApp.xml"));
+            jfileChooser.setFileFilter(new FileTypeFilter(".xml", "XML File"));
+            int result = jfileChooser.showSaveDialog(null);
+            if(result == JFileChooser.APPROVE_OPTION)
+            {
+                xmlFile = jfileChooser.getSelectedFile().getAbsolutePath();
+            }
+            JDBC jdbc = new JDBC("export");
+            JOptionPane.showMessageDialog(null, "File export successfully!");
+
+        } 
+        catch (Exception e) 
+        {
+            JOptionPane.showMessageDialog(null, "Can't select XML file");
+        }
+    }//GEN-LAST:event_ExportActionPerformed
+
+    private void ImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImportActionPerformed
+        try 
+        {
+            JFileChooser jfileChooser = new JFileChooser("/Users/kamil/Desktop/Programowanie/Java/MovieApp");
+            jfileChooser.setDialogTitle("Please select XML file");
+            jfileChooser.setFileFilter(new FileTypeFilter(".xml", "XML File"));
+            int result = jfileChooser.showSaveDialog(null);
+            if(result == JFileChooser.APPROVE_OPTION)
+            {
+                xmlFile = jfileChooser.getSelectedFile().getAbsolutePath();
+            }
+            JDBC jdbc = new JDBC("import");
+            JOptionPane.showMessageDialog(null, "File import successfully!");
+        } 
+        catch (Exception e) 
+        {
+            JOptionPane.showMessageDialog(null, "Can't select XML file");
+        }
+    }//GEN-LAST:event_ImportActionPerformed
+
+    public static String get_xmlFile()
+    {
+        return xmlFile;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -121,9 +198,14 @@ public class Menu_win extends JFrame
         });
     }
 
+    private static String xmlFile = "";
     private JFrame thisFrame = this;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Export;
+    private javax.swing.JMenuItem Import;
     private javax.swing.JButton Library;
     private javax.swing.JButton Search;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
 }

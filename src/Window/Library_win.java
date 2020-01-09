@@ -17,6 +17,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import javax.xml.parsers.ParserConfigurationException;
@@ -57,10 +59,15 @@ public class Library_win extends JFrame
         Import = new javax.swing.JMenuItem();
         Export = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(450, 300, 0, 0));
 
         Delete.setText("Delete");
+        Delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteActionPerformed(evt);
+            }
+        });
 
         Cancel.setText("Cancel");
         Cancel.addActionListener(new java.awt.event.ActionListener() {
@@ -88,11 +95,11 @@ public class Library_win extends JFrame
 
             },
             new String [] {
-                "Title ", "Year", "RunTime", "Genre", "Director", "Country", "Rate", "Select"
+                "Title", "Year", "RunTime", "Genre", "Director", "Country", "Rate", "Select"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Boolean.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Boolean.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -131,14 +138,14 @@ public class Library_win extends JFrame
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(180, 180, 180)
-                        .addComponent(Cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
+                        .addComponent(Cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Add)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Edit))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(19, Short.MAX_VALUE))
@@ -175,47 +182,12 @@ public class Library_win extends JFrame
 
     // user chooses which one wants to import the file
     private void ImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImportActionPerformed
-        try 
-        {
-            JFileChooser jfileChooser = new JFileChooser("/Users/kamil/Desktop/Programowanie/Java/MovieApp");
-            jfileChooser.setDialogTitle("Please select XML file");
-            jfileChooser.setFileFilter(new FileTypeFilter(".xml", "XML File"));
-            int result = jfileChooser.showSaveDialog(null);
-            if(result == JFileChooser.APPROVE_OPTION)
-            {
-                xmlFile = jfileChooser.getSelectedFile().getAbsolutePath();
-            }
-            JDBC jdbc = new JDBC("import");
-            JOptionPane.showMessageDialog(null, "File import successfully!");
-        } 
-        catch (Exception e) 
-        {
-            JOptionPane.showMessageDialog(null, "Can't select XML file");
-        }
+        
     }//GEN-LAST:event_ImportActionPerformed
 
     //
     private void ExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportActionPerformed
-        try 
-        {
-            JFileChooser jfileChooser = new JFileChooser("/Users/kamil/Desktop/Programowanie/Java/MovieApp");
-            jfileChooser.setDialogTitle("Export Database to XML");
-            jfileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-            jfileChooser.setSelectedFile(new File("Database_MovieApp.xml"));
-            jfileChooser.setFileFilter(new FileTypeFilter(".xml", "XML File"));
-            int result = jfileChooser.showSaveDialog(null);
-            if(result == JFileChooser.APPROVE_OPTION)
-            {
-                 xmlFile = jfileChooser.getSelectedFile().getAbsolutePath();
-            }
-            JDBC jdbc = new JDBC("export");
-            JOptionPane.showMessageDialog(null, "File export successfully!");
-
-        } 
-        catch (Exception e) 
-        {
-            JOptionPane.showMessageDialog(null, "Can't select XML file");
-        }
+        
     }//GEN-LAST:event_ExportActionPerformed
 
     //set editing Table
@@ -230,10 +202,53 @@ public class Library_win extends JFrame
         }
     }//GEN-LAST:event_EditStateChanged
 
-    public static String get_xmlFile()
+    private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
+        list_title.clear();
+        for (int i = 0; i < table.getRowCount(); i++) 
+        {
+            Boolean chked;
+            try
+            {
+                chked = Boolean.valueOf(table.getValueAt(i, 7).toString());
+            }
+            catch (java.lang.NullPointerException e)
+            {
+                chked = false;
+            }
+            
+            if (chked)
+            {
+                
+                list_title.add(table.getValueAt(i, 0).toString());
+            }
+        }
+        try
+        {
+            JDBC jdbc = new JDBC("delete"); 
+            JOptionPane.showMessageDialog(null, "Row deleted successfully !");
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            model.setRowCount(0);
+            addRow();
+            
+        }
+        catch (SQLException | ParserConfigurationException | TransformerException | IOException | SAXException exc)
+        {
+            JOptionPane.showMessageDialog(null, "Error ! Doesn't connect with database !");
+        } 
+        catch (inCorrect ex)
+        {
+            //
+        }
+                
+         
+    }//GEN-LAST:event_DeleteActionPerformed
+
+    public static ArrayList getList()
     {
-        return xmlFile;
+        return list_title;
     }
+    
+    
     //create sort by title, year and rate 
     private void sort()
     {
@@ -290,11 +305,11 @@ public class Library_win extends JFrame
      * @param args the command line arguments
      */
 
-    private static String xmlFile = "";
     private int amount = 0;
     private List<String> key;
     private Map<String, List<String>> map_database = new HashMap<String, List<String>>();
     private JFrame thisFrame = this;
+    private static ArrayList<String> list_title = new ArrayList<String>();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Add;
     private javax.swing.JButton Cancel;

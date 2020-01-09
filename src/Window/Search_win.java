@@ -98,7 +98,7 @@ public class Search_win extends JFrame
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Search)
                     .addComponent(Cancel))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -129,11 +129,11 @@ public class Search_win extends JFrame
     }//GEN-LAST:event_SearchActionPerformed
 
     //create getter
-     public static String getTitle_movie()
+    public static String getTitle_movie()
     {
         return title_movie;
     }
-   
+    
     //variable which will be used to send to other package
     static Map<String, String> map_JSON;
     public static String title_movie;

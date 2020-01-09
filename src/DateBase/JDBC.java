@@ -1,6 +1,6 @@
 package DateBase;
 
-import Window.Library_win;
+import Window.Menu_win;
 import java.sql.*;
 import Window.More_info_win;
 import java.io.File;
@@ -76,6 +76,10 @@ public class JDBC
             {
                 read();
             }
+            else if(r_s_e_i.equals("delete"))
+            {
+                delete();
+            }
             else if(r_s_e_i.equals("export"))
             {
                 //save document XML 
@@ -85,20 +89,16 @@ public class JDBC
                 Transformer transformer = tf.newTransformer();
                 
                 //in this place user have to give file path to folder MovieApp and name for this XML
-                String xmlPath = Library_win.get_xmlFile();
+                String xmlPath = Menu_win.get_xmlFile();
                 StreamResult sr = new StreamResult(new File("" + xmlPath));
                 transformer.transform(domSource, sr);
             }
             else if(r_s_e_i.equals("import"))
             {
-                String XMLpath = Library_win.get_xmlFile();
+                String XMLpath = Menu_win.get_xmlFile();
                 XMLtoTable(XMLpath, myConn);
             }
         }      
-        catch(SQLException | ParserConfigurationException | TransformerException exc)
-        {
-            exc.printStackTrace();
-        }
         finally
         {
             if (myRs != null) {
@@ -114,6 +114,24 @@ public class JDBC
             }
         }
         
+    }
+    
+    private void delete() throws SQLException
+    {
+        HashMap<String, ArrayList<String>> map = new HashMap<String, ArrayList<String>>();
+        ArrayList<String> title = new ArrayList<String>();
+        title = Window.Library_win.getList();
+        
+        int amount = 0;
+        String name = "";
+        
+                
+        for(int i = 0; i < title.size(); i++)
+        {
+            PreparedStatement st = myConn.prepareStatement("DELETE FROM `demo`.`Movie_library` WHERE Title = ?");
+            st.setString(1, title.get(i));
+            st.executeUpdate();
+        }        
     }
     
     //method when user want to save record to MySQL
@@ -297,8 +315,8 @@ public class JDBC
         }
 
         NodeList tableData = doc.getElementsByTagName("TableData");
+        
         int table_len = tableData.item(0).getChildNodes().getLength();
-
         PreparedStatement prepStmt = con.prepareStatement(dml.toString());
 
         String colName = "";
@@ -310,7 +328,8 @@ public class JDBC
                 prepStmt.setString(j + 1, doc.getElementsByTagName(colName).item(i).getTextContent());
 
             }
-            prepStmt.addBatch();
+//            prepStmt.addBatch();
+        prepStmt.executeUpdate();
         }
     }
     
