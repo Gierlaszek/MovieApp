@@ -28,7 +28,7 @@ public class request_response
 
         title = title.replaceAll("\\s+", "+");
 
-        //make request to server OMBDAPI.COM
+        //make request to server OMDBAPI.COM
         String url = "http://www.omdbapi.com/?t=" + title + "&apikey=fa42bd30";
         URL object = new URL(url);
         URLConnection con = object.openConnection();

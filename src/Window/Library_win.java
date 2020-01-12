@@ -51,13 +51,8 @@ public class Library_win extends JFrame
         Delete = new javax.swing.JButton();
         Cancel = new javax.swing.JButton();
         Add = new javax.swing.JButton();
-        Edit = new javax.swing.JCheckBox();
         jScrollPane2 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        File = new javax.swing.JMenu();
-        Import = new javax.swing.JMenuItem();
-        Export = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(450, 300, 0, 0));
@@ -83,13 +78,6 @@ public class Library_win extends JFrame
             }
         });
 
-        Edit.setText("Edit");
-        Edit.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                EditStateChanged(evt);
-            }
-        });
-
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -110,28 +98,6 @@ public class Library_win extends JFrame
         addRow();
         sort();
 
-        File.setText("File");
-
-        Import.setText("Import");
-        Import.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ImportActionPerformed(evt);
-            }
-        });
-        File.add(Import);
-
-        Export.setText("Export");
-        Export.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ExportActionPerformed(evt);
-            }
-        });
-        File.add(Export);
-
-        jMenuBar1.add(File);
-
-        setJMenuBar(jMenuBar1);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -144,9 +110,7 @@ public class Library_win extends JFrame
                         .addGap(18, 18, 18)
                         .addComponent(Cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Add)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Edit))
+                        .addComponent(Add))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
@@ -155,12 +119,11 @@ public class Library_win extends JFrame
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Delete)
                     .addComponent(Cancel)
-                    .addComponent(Add)
-                    .addComponent(Edit))
+                    .addComponent(Add))
                 .addGap(35, 35, 35))
         );
 
@@ -179,28 +142,6 @@ public class Library_win extends JFrame
         new More_info_win(this).setVisible(true);    
         
     }//GEN-LAST:event_AddActionPerformed
-
-    // user chooses which one wants to import the file
-    private void ImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImportActionPerformed
-        
-    }//GEN-LAST:event_ImportActionPerformed
-
-    //
-    private void ExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportActionPerformed
-        
-    }//GEN-LAST:event_ExportActionPerformed
-
-    //set editing Table
-    private void EditStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_EditStateChanged
-        if(Edit.isSelected())
-        {
-            table.setEnabled(true);
-        }
-        else
-        {
-            table.setEnabled(false);
-        }
-    }//GEN-LAST:event_EditStateChanged
 
     private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
         list_title.clear();
@@ -314,11 +255,6 @@ public class Library_win extends JFrame
     private javax.swing.JButton Add;
     private javax.swing.JButton Cancel;
     private javax.swing.JButton Delete;
-    private javax.swing.JCheckBox Edit;
-    private javax.swing.JMenuItem Export;
-    private javax.swing.JMenu File;
-    private javax.swing.JMenuItem Import;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables

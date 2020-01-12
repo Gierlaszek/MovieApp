@@ -61,14 +61,14 @@ public class More_info_win extends JFrame {
         Cancel = new javax.swing.JButton();
         Save = new javax.swing.JButton();
         Edit = new javax.swing.JCheckBox();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        Rate = new javax.swing.JSlider(javax.swing.JSlider.HORIZONTAL, 0, 10, 5);
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        Title = new javax.swing.JLabel();
+        Year = new javax.swing.JLabel();
+        Rate_s = new javax.swing.JSlider(javax.swing.JSlider.HORIZONTAL, 0, 10, 5);
+        Genre = new javax.swing.JLabel();
+        RunTime = new javax.swing.JLabel();
+        Director = new javax.swing.JLabel();
+        Country = new javax.swing.JLabel();
+        Rate = new javax.swing.JLabel();
         title = new javax.swing.JTextField();
         year = new javax.swing.JTextField();
         genre = new javax.swing.JTextField();
@@ -110,31 +110,31 @@ public class More_info_win extends JFrame {
             }
         });
 
-        jLabel1.setText("Title:");
+        Title.setText("Title:");
 
-        jLabel2.setText("Year:");
+        Year.setText("Year:");
 
-        Rate.setMajorTickSpacing(5);
-        Rate.setMinorTickSpacing(1);
-        Rate.setPaintTicks(true);
-        Rate.setPaintLabels(true);
-        Rate.setSnapToTicks(true);
-        Rate.setOrientation(javax.swing.JSlider.VERTICAL);
-        Rate.addChangeListener(new javax.swing.event.ChangeListener() {
+        Rate_s.setMajorTickSpacing(5);
+        Rate_s.setMinorTickSpacing(1);
+        Rate_s.setPaintTicks(true);
+        Rate_s.setPaintLabels(true);
+        Rate_s.setSnapToTicks(true);
+        Rate_s.setOrientation(javax.swing.JSlider.VERTICAL);
+        Rate_s.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                RateStateChanged(evt);
+                Rate_sStateChanged(evt);
             }
         });
 
-        jLabel3.setText("Genre:");
+        Genre.setText("Genre:");
 
-        jLabel4.setText("RunTime:");
+        RunTime.setText("RunTime:");
 
-        jLabel5.setText("Director:");
+        Director.setText("Director:");
 
-        jLabel6.setText("Country:");
+        Country.setText("Country:");
 
-        jLabel7.setText("Rate:");
+        Rate.setText("Rate:");
 
         title.setEditable(false);
 
@@ -186,28 +186,28 @@ public class More_info_win extends JFrame {
                                 .addGap(87, 87, 87))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(Year, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGap(1, 1, 1)))
                                 .addGap(122, 122, 122))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Genre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(199, 199, 199))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(1, 1, 1)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(Director, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                                 .addGap(1, 1, 1)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                                    .addComponent(Rate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(Country, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                                         .addGap(183, 183, 183))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(RunTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGap(179, 179, 179))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(88, 88, 88)
@@ -219,7 +219,7 @@ public class More_info_win extends JFrame {
                                             .addComponent(year)
                                             .addComponent(title))))))
                         .addGap(58, 58, 58)
-                        .addComponent(Rate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Rate_s, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -233,33 +233,33 @@ public class More_info_win extends JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
+                            .addComponent(Title)
                             .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
+                            .addComponent(Year)
                             .addComponent(year, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
+                            .addComponent(Genre)
                             .addComponent(genre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
+                            .addComponent(RunTime)
                             .addComponent(runTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
+                            .addComponent(Director)
                             .addComponent(director, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
+                            .addComponent(Country)
                             .addComponent(country, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(rate, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7)))
-                    .addComponent(Rate, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Rate)))
+                    .addComponent(Rate_s, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Delete)
@@ -301,9 +301,9 @@ public class More_info_win extends JFrame {
     }//GEN-LAST:event_CancelActionPerformed
 
     //create rating option
-    private void RateStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_RateStateChanged
+    private void Rate_sStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Rate_sStateChanged
         rate.setText("" + ((javax.swing.JSlider) evt.getSource()).getValue());
-    }//GEN-LAST:event_RateStateChanged
+    }//GEN-LAST:event_Rate_sStateChanged
 
     //make permission to edit data 
     private void EditStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_EditStateChanged
@@ -385,20 +385,20 @@ public class More_info_win extends JFrame {
     private Object frameParent = null;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cancel;
+    private javax.swing.JLabel Country;
     private javax.swing.JButton Delete;
+    private javax.swing.JLabel Director;
     private javax.swing.JCheckBox Edit;
-    private javax.swing.JSlider Rate;
+    private javax.swing.JLabel Genre;
+    private javax.swing.JLabel Rate;
+    private javax.swing.JSlider Rate_s;
+    private javax.swing.JLabel RunTime;
     private javax.swing.JButton Save;
+    private javax.swing.JLabel Title;
+    private javax.swing.JLabel Year;
     private javax.swing.JTextField country;
     private javax.swing.JTextField director;
     private javax.swing.JTextField genre;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel rate;
     private javax.swing.JTextField runTime;
